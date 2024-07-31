@@ -1,4 +1,4 @@
-FROM docker pull bellsoft/liberica-runtime-container:jdk-cds-slim AS build
+FROM bellsoft/liberica-runtime-container:jdk-cds-slim AS build
 
 # Copy the pom.xml and source code into the container
 COPY pom.xml .
