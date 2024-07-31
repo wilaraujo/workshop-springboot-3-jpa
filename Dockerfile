@@ -10,9 +10,8 @@ COPY . .
 RUN ./mvnw clean package -DskipTests
 
 # Copy the jar file from the build stage
-# ARG JAR_FILE=target/*.jar
-# COPY ${JAR_FILE} app.jar
-COPY /app/target/*.jar app.jar
+ARG JAR_FILE=target/*.jar
+COPY ${JAR_FILE} app.jar
 
 # Expose the port that the application will run on
 EXPOSE 8080
