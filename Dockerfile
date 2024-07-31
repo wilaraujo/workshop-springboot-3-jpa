@@ -1,14 +1,11 @@
-FROM ubuntu:latest AS build
+FROM docker pull bellsoft/liberica-runtime-container:jdk-cds-slim AS build
 
-RUN apt-get update
-RUN apt-get install openjdk-21-jdk -y
-COPY . .
+# Copy the pom.xml and source code into the container
+COPY pom.xml .
+COPY src ./src
 
 # Package the application
-RUN mvn clean package -DskipTests
-
-# Use an official OpenJDK runtime as a base image
-FROM openjdk:21-jdk-slim
+RUN ./mvnw clean package -DskipTests
 
 # Copy the jar file from the build stage
 COPY --from=build /app/target/*.jar app.jar
