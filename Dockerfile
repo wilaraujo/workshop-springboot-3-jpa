@@ -9,6 +9,8 @@ COPY . .
 # Package the application
 RUN ./mvnw clean package -DskipTests
 
+RUN ls -la /app/target
+
 # Copy the jar file from the build stage
 # ARG JAR_FILE=/app/target/*.jar
 # COPY ${JAR_FILE} app.jar
